@@ -2,9 +2,7 @@
 #board {
   width: 500px;            
   height: 400px;            
-  border-top: 3px solid black;
-  border-left: 3px solid black;
-  border-right: 3px solid black;
+  border: 3px solid black;
   position: relative;       
   margin: 50px auto;        /* centre le board horizontalement */
   background-color: blanchedalmond; /* couleur du board */
