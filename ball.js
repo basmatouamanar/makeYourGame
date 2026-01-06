@@ -95,14 +95,15 @@ for (let i = 0; i < rows; i++) {
     }
     //brickY.push(brick.style.top)
 }
-
 let lives = document.getElementById("live") 
 for (let u = 0; u < 3; u++) {
     let live = document.createElement('div')
     live.className = "live"
     live.style.width = "20px"
     live.style.height = "20px"
-    live.style.border = "10px"
+    live.style.backgroundColor = "green"
+    live.style.margin = "5px"
+    live.style.borderRadius = "10px"
     lives.appendChild(live)
 
 }
@@ -124,6 +125,11 @@ function ball() {
         dy = -dy
     }
     if ((y + letterHeight) >= boardHeight) {
+        let lives = document.getElementById('live')
+        let oneLive = lives.querySelector('.live')
+        if (oneLive) {
+            oneLive.remove()
+        }
         ballLaunched = false 
         countLive++
         fail = true
