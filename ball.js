@@ -87,7 +87,8 @@ for (let i = 0; i < rows; i++) {
         //console.log(brick.style.left)
         bricks.push({
             x: parseInt(brick.style.left),
-            y: parseInt(brick.style.top)
+            y: parseInt(brick.style.top),
+            el : brick
         })
         //console.log(brickXY)
         boardBricks.appendChild(brick);
@@ -120,16 +121,24 @@ function ball() {
         dx = (contact - 0.5) * 2 * maxDX
     }
     let contact = false
-    bricks.forEach(brick => {
-        if (
-            x < brick.x + brickWidth &&
-            x + letterWidth > brick.x &&
-            y < brick.y + brickHeight &&
-            y + letterHeight > brick.y
-        ) {
-            dy = -dy
-        }
-    })
+   for (let i = 0; i < bricks.length; i++) {
+    let brick = bricks[i]
+
+    if (
+        x < brick.x + brickWidth &&
+        x + letterWidth > brick.x &&
+        y < brick.y + brickHeight &&
+        y + letterHeight > brick.y
+    ) {
+        dy = -dy
+
+        brick.el.remove()   // BONNE brique
+        bricks.splice(i, 1)
+
+        break
+    }
+}
+
 
 
 
