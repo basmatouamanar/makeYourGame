@@ -40,6 +40,10 @@ document.addEventListener("keyup", (e) => {
         keyword.left = false
     }
 })
+let paused = false
+document.getElementById("bouttonPause").addEventListener("click", () => {
+    paused = !paused  
+})
 
 function movePabble() {
     if (keyword.right) {
@@ -95,7 +99,7 @@ for (let i = 0; i < rows; i++) {
     }
     //brickY.push(brick.style.top)
 }
-let lives = document.getElementById("live") 
+let lives = document.getElementById("live")
 for (let u = 0; u < 3; u++) {
     let live = document.createElement('div')
     live.className = "live"
@@ -130,7 +134,7 @@ function ball() {
         if (oneLive) {
             oneLive.remove()
         }
-        ballLaunched = false 
+        ballLaunched = false
         countLive++
         fail = true
     }
@@ -161,23 +165,24 @@ function ball() {
             break
         }
     }
-
-
-
-
 }
 
 function loop() {
-    movePabble()
+    if (!paused) {
 
-    if (!ballLaunched || fail) {
-        x = pabbleX + (aWidth / 2) - (letterWidth / 2)
-        y = pabbleY - letterHeight
-        if (countLive < 3) { 
-            fail = false
+        movePabble()
+
+        if (!ballLaunched || fail) {
+            x = pabbleX + (aWidth / 2) - (letterWidth / 2)
+            y = pabbleY - letterHeight
+            if (countLive < 3) {
+                fail = false
+            } else {
+
+            }
+        } else {
+            ball()
         }
-    } else {
-        ball()
     }
     element.style.transform = `translate(${x}px, ${y}px)`
     requestAnimationFrame(loop)
